@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/sounds/battle-bgm.wav" type="AudioStream" id=1]
+[ext_resource path="res://src/Camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/environtment/Ship.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/enemy/kraken/Kraken.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sprites/sea.png" type="Texture" id=6]
+
+[node name="Gameplay" type="Node2D"]
+
+[node name="Sea" type="Sprite" parent="."]
+position = Vector2( 205, 112 )
+texture = ExtResource( 6 )
+
+[node name="Ship" parent="." instance=ExtResource( 4 )]
+position = Vector2( 71, 108 )
+
+[node name="Border" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Border"]
+polygon = PoolVector2Array( 34, 7, 34, 218, 137, 217, 145, 198, 145, 33, 134, 8, 36, 8, 36, 3, 147, 3, 148, 222, 29, 222, 30, 7 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 48, 111 )
+
+[node name="Kraken" parent="." instance=ExtResource( 5 )]
+position = Vector2( 295, 145 )
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+volume_db = -11.0
+autoplay = true
+
+[node name="Camera" parent="." instance=ExtResource( 2 )]
